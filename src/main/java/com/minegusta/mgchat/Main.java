@@ -5,6 +5,9 @@ import com.demigodsrpg.chitchat.format.ChatFormat;
 import com.demigodsrpg.chitchat.tag.DefaultPlayerTag;
 import com.demigodsrpg.chitchat.tag.PlayerTag;
 import com.demigodsrpg.chitchat.tag.WorldPlayerTag;
+import com.minegusta.mgchat.command.ChatCommand;
+import com.minegusta.mgchat.data.ChatGroup;
+import com.minegusta.mgchat.listener.ChatGroupListener;
 import com.minegusta.mgchat.listener.FactionChatListener;
 import com.minegusta.mgchat.listener.WastelandListener;
 import com.minegusta.mgchat.tags.FactionTag;
@@ -32,6 +35,8 @@ public class Main extends JavaPlugin
         if(Bukkit.getPluginManager().isPluginEnabled("Factions"))
         {
             Bukkit.getPluginManager().registerEvents(new FactionChatListener(), this);
+            Bukkit.getPluginManager().registerEvents(new ChatGroupListener(), this);
+            this.getCommand("chat").setExecutor(new ChatCommand());
             format.add(new FactionTag());
         }
 
@@ -51,7 +56,8 @@ public class Main extends JavaPlugin
     @Override
     public void onDisable()
     {
-
+        ChatGroup.clearAlliesChat();
+        ChatGroup.clearFactionChat();
     }
 
 }
