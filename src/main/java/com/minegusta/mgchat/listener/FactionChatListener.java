@@ -1,14 +1,14 @@
 package com.minegusta.mgchat.listener;
 
 
-import com.massivecraft.factions.Factions;
 import com.massivecraft.factions.Rel;
 import com.massivecraft.factions.cmd.arg.ARFaction;
 import com.massivecraft.factions.entity.Faction;
-import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.factions.entity.MPlayer;
+import com.massivecraft.massivecore.util.Txt;
+
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -33,6 +33,7 @@ public class FactionChatListener implements Listener
         MPlayer uplayer = MPlayer.get(p);
         Faction faction = uplayer.getFaction();
         String factionName = faction.getName();
+        String role = Txt.upperCaseFirst(uplayer.getRole().toString().toLowerCase());
         if(factionName.contains("Wilderness")) return;
 
         if(message.startsWith("!!"))
@@ -50,18 +51,18 @@ public class FactionChatListener implements Listener
                     Faction ally = ARFaction.get().read(s).getResult();
                     for(Player allyPlayer : ally.getOnlinePlayers())
                     {
-                        allyPlayer.sendMessage(prefix + fname + name + sendMessage);
+                        allyPlayer.sendMessage(prefix + fname + "[" + role +  "]" + name + sendMessage);
                     }
                 }
             }
             for(Player player : faction.getOnlinePlayers())
             {
-                player.sendMessage(prefix + fname + name + sendMessage);
+                player.sendMessage(prefix + fname +  "[" + role +  "]" + name + sendMessage);
             }
         }
         else
         {
-            String send = ChatColor.GREEN + "[FC] " + ChatColor.BOLD + p.getName()+ ": " + ChatColor.DARK_GREEN + message.substring(1, message.length());
+            String send = ChatColor.GREEN + "[FC] " + ChatColor.BOLD + p.getName()+ "[" + role +  "]"  + ":"  + ChatColor.DARK_GREEN + message.substring(1, message.length());
             for(Player player : faction.getOnlinePlayers())
             {
                 player.sendMessage(send);
