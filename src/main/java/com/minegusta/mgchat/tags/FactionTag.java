@@ -1,6 +1,7 @@
 package com.minegusta.mgchat.tags;
 
 
+import com.demigodsrpg.chitchat.tag.ChatScope;
 import com.demigodsrpg.chitchat.tag.PlayerTag;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.MPlayer;
@@ -26,5 +27,11 @@ public class FactionTag extends PlayerTag {
     @Override
     public int getPriority() {
         return 1;
+    }
+
+    @Override
+    public ChatScope getScope()
+    {
+        return ChatScope.LOCAL;
     }
 }

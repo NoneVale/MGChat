@@ -1,5 +1,6 @@
 package com.minegusta.mgchat.tags;
 
+import com.demigodsrpg.chitchat.tag.ChatScope;
 import com.demigodsrpg.chitchat.tag.PlayerTag;
 import com.minegusta.mgracesredone.main.Races;
 import org.bukkit.entity.Player;
@@ -29,5 +30,11 @@ public class RaceTag extends PlayerTag {
     @Override
     public int getPriority() {
         return 2;
+    }
+
+    @Override
+    public ChatScope getScope()
+    {
+        return ChatScope.LOCAL;
     }
 }

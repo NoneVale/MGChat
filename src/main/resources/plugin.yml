@@ -3,4 +3,4 @@ name: MGChat
 version: ${project.version}
 authors: [HmmmQuestionMark, janie177]
 depend: [Chitchat]
-softdepend: [Factions, MGRacesRedone]
+softdepend: [Factions, MGRacesRedone, MGApocalypse]
